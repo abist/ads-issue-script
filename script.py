@@ -1,6 +1,7 @@
 import subprocess
 import git
 import schedule
+import time
 
 
 def job():
@@ -12,6 +13,11 @@ def job():
     repo.remotes.origin.push(refspec="master:master")
 
 
+schedule.every().hour.do(job())
+
+
 if __name__ == '__main__':
     while True:
-        schedule.every().hour.do(job())
+        schedule.run_pending()
+        time.sleep(1)
+
