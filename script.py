@@ -1,5 +1,6 @@
 import subprocess
 import git
+import schedule
 
 
 def job():
@@ -12,4 +13,5 @@ def job():
 
 
 if __name__ == '__main__':
-    job()
+    while True:
+        schedule.every().hour.do(job())
