@@ -13,7 +13,7 @@ def job(bool):
     repo.remotes.origin.push(refspec="master:master")
 
 
-schedule.every().hour.do(job(True))
+schedule.every().hour.do(job, True)
 
 
 if __name__ == '__main__':
