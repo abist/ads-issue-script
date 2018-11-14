@@ -4,16 +4,16 @@ import schedule
 import time
 
 
-def job():
+def job(bool):
     repo = git.Repo("./../ads-issue-tracker")
     repo.remotes.origin.pull()
     subprocess.call(["node", "./../ads-issue-tracker/grabDataScript.js"])
-    repo.git.add(update=True)
+    repo.git.add(update=bool)
     repo.git.commit("-m", "data update")
     repo.remotes.origin.push(refspec="master:master")
 
 
-schedule.every().hour.do(job())
+schedule.every().hour.do(job(True))
 
 
 if __name__ == '__main__':
